@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automação para Lava Rápido & Setor Automotivo | Cortex Digital</title>
+    <style>
+        /* --- CONFIGURAÇÕES GERAIS E PALETA CYBER-MINIMALISTA --- */
+        :root {
+            --bg-principal: #0b0f19;
+            --bg-card: #131c2e;
+            --cor-primaria: #00ff87; /* Verde Neon p/ Conversão */
+            --cor-secundaria: #00dfa2;
+            --texto-claro: #ffffff;
+            --texto-mutado: #94a3b8;
+            --borda-cyber: rgba(0, 255, 135, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-principal);
+            color: var(--texto-claro);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- HEADER / NAV (Mantém a identidade da Cortex) --- */
+        header {
+            background-color: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-cortex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo-cortex {
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            color: var(--texto-claro);
+        }
+
+        .logo-cortex span {
+            color: var(--cor-primaria);
+        }
+
+        .menu-cortex a {
+            color: var(--texto-mutado);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .menu-cortex a:hover {
+            color: var(--cor-primaria);
+        }
+
+        /* --- SEÇÃO HERO (A Promessa de Nicho) --- */
+        .hero {
+            padding: 150px 0 60px 0;
+            text-align: center;
+        }
+
+        .tag-nicho {
+            background: rgba(0, 255, 135, 0.1);
+            border: 1px solid var(--cor-primaria);
+            color: var(--cor-primaria);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            max-width: 900px;
+            margin: 0 auto 20px auto;
+        }
+
+        h1 span {
+            color: var(--cor-primaria);
+        }
+
+        .subtitulo {
+            font-size: 1.2rem;
+            color: var(--texto-mutado);
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* --- SEÇÃO DO VÍDEO DEMONSTRATIVO (O Vendedor Autônomo) --- */
+        .video-section {
+            padding: 20px 0 60px 0;
+        }
+
+        .video-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--borda-cyber);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        /* Mantém a proporção 16:9 do vídeo */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #000;
+        }
+
+        .video-container iframe, 
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- SEÇÃO DE BENEFÍCIOS --- */
+        .beneficios {
+            padding: 60px 0;
+            background: rgba(19, 28, 46, 0.4);
+        }
+
+        .grid-beneficios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .card-beneficio {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .card-beneficio:hover {
+            transform: translateY(-5px);
+            border-color: var(--borda-cyber);
+        }
+
+        .card-beneficio h3 {
+            color: var(--cor-primaria);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+
+        /* --- SEÇÃO DE OFERTA E MATRICULA / CONTRATAÇÃO --- */
+        .oferta {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .box-oferta {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--bg-card) 0%, #1a263f 100%);
+            border: 2px solid var(--cor-primaria);
+            padding: 50px 40px;
+            border-radius: 16px;
+            box-shadow: 0 0 30px rgba(0, 255, 135, 0.1);
+        }
+
+        .preco {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--texto-claro);
+            margin: 20px 0;
+        }
+
+        .preco span {
+            font-size: 1rem;
+            color: var(--texto-mutado);
+            font-weight: 400;
+        }
+
+        /* Botão de Alta Conversão (CTA) */
+        .btn-compra {
+            display: inline-block;
+            width: 100%;
+            background: var(--cor-primaria);
+            color: #05070c;
+            text-decoration: none;
+            padding: 18px 30px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 255, 135, 0.3);
+            margin-top: 15px;
+        }
+
+        .btn-compra:hover {
+            background: var(--cor-secundaria);
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 255, 135, 0.5);
+        }
+
+        .garantia {
+            font-size: 0.85rem;
+            color: var(--texto-mutado);
+            margin-top: 15px;
+            display: block;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: var(--texto-mutado);
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .menu-cortex { display: none; } /* Simplifica no mobile p/ focar na oferta */
+            .box-oferta { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER / MENU DE AUTORIDADE -->
+    <header>
+        <div class="container nav-cortex">
+            <div class="logo-cortex">CORTEX<span>DIGITAL</span></div>
+            <nav class="menu-cortex">
+                <a href="index.html">Home</a>
+                <a href="#beneficios">Como Funciona</a>
+                <a href="#demonstracao">Demonstração</a>
+                <a href="#CONTRATAR">Planos</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO DE NICHO -->
+    <section class="hero">
+        <div class="container">
+            <span class="tag-nicho">Setor Automotivo: Pátos</span>
+            <h1>PARE DE PERDER CLIENTES POR FALTA DE TEMPO PARA RESPONDER MENSAGENS. <span>Tenha um sistema inteligente que atende e agende clientes 24h por dia para você.</span></h1>
+            <p class="subtitulo">Enquanto você está lavando veículos, atendendo clientes ou gerenciando sua operação, a Cortex Digital trabalha por você. Transformamos seu WhatsApp em um atendente virtual inteligente capaz de realizar triagem, responder dúvidas, agendar lavagens e confirmar horários automaticamente, 24 horas por dia. Mais agendamentos, menos interrupções e total controle da sua agenda. Você cuida dos veículos. A tecnologia cuida dos clientes.</p>
+        </div>
+    </section>
+
+   <section class="video-section" id="demonstracao">
+        <div class="container">
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <!-- PADRÃO COMPLETO: Roda direto no site, sem travar e sem anúncios extras -->
+                    <video controls controlsList="nodownload" poster="lava_rapido.png" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        <source src="lava_rapido.mp4" type="video/mp4">
+                        
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFÍCIOS DO NICHO -->
+    <section class="beneficios" id="beneficios">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2rem;">A engrenagem perfeita para sua operação</h2>
+            <div class="grid-beneficios">
+                <!-- CARD 1: O Caos do Agendamento e Clima -->
+                <div class="card card-pain">
+                    <h3>📅 Agenda de Pátio Inteligente</h3>
+                    <p>Clientes disputando os mesmos horários no sábado ou cancelando em cima da hora quando chove. A IA organiza a fila de espera e gerencia os agendamentos de forma 100% autônoma.</p>
+                </div>
+
+                <!-- CARD 2: Gargalo na Escolha de Serviços/Combos -->
+                <div class="card card-pain">
+                    <h3>🧼 Escolha de Serviços e Up-Sells</h3>
+                    <p>Perder minutos explicando a diferença entre lavagem simples, cera comercial e higienização interna. O sistema envia um menu interativo onde o cliente monta o combo e vê os preços na hora.</p>
+                </div>
+
+                <!-- CARD 3: O Fantasma do "Já Posso Buscar?" -->
+                <div class="card card-pain">
+                    <h3>⏱️ Notificação de Carro Pronto</h3>
+                    <p>O pátio trava com veículos prontos acumulados porque o dono esqueceu de avisar o cliente ou o cliente não viu a mensagem. A automação envia alertas em tempo real: "Seu carro entrou na rampa de secagem" e "Pronto para retirada".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFERTA DIRETA COM BOTÃO DE ACESSO IMEDIATO -->
+    <section class="oferta" id="CONTRATAR">
+        <div class="container">
+            <div class="box-oferta">
+                <h2 style="font-size: 1.8rem; font-weight: 700;">Ative a Cortex Digital na sua Oficina</h2>
+                <p style="color: var(--texto-mutado); margin-top: 10px;">Sistema pronto integrado ao seu WhatsApp Comercial + Suporte na Instalação.</p>
+                
+                <div class="preco">R$ 197<span>/mês</span></div>
+                
+                <!-- LINK QUE DIRECIONA PRO SEU WHATSAPP JÁ TRATANDO O LEAD -->
+                <a href="https://wa.me/SEU_NUMERO_AQUI?text=Olá%20André!%20Vi%20o%20vídeo%20da%20Cortex%20Automotiva%20e%20quero%20ativar%20a%20automação%20na%20minha%20oficina." class="btn-compra" target="_blank">
+                    Quero Ativar Minha Automação Agora
+                </a>
+                
+                <span class="garantia">🔒 Configuração rápida sem travar seu número atual.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Cortex Digital. Todos os direitos reservados.</p>
+            <p style="font-size: 0.75rem; margin-top: 5px; color: rgba(255,255,255,0.2);">Desenvolvido para alta performance operacional.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

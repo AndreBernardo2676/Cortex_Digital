@@ -328,33 +328,62 @@
       margin-top: -.05rem;
     }
 
-    /* ── LAB / PORTFOLIO ──────────────────────────────────────────────── */
+    /* ── LAB / PORTFOLIO WITH FLOATING NICHOS ────────────────────────── */
     #lab { background: var(--bg); }
 
     .lab-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
+      gap: 2rem;
     }
 
     .lab-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.8rem;
+      border-radius: 16px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      transition: transform .3s, box-shadow .3s, border-color .3s;
+      transition: transform .4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow .4s, border-color .4s;
     }
+
     .lab-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 14px 36px rgba(56,189,248,.15);
-      border-color: rgba(56,189,248,.35);
+      transform: translateY(-10px);
+      box-shadow: 0 22px 40px rgba(56,189,248,0.25);
+      border-color: rgba(56,189,248,0.5);
+    }
+
+    /* Imagem superior do nicho */
+    .lab-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 160px;
+      overflow: hidden;
+      background: #09111e;
+    }
+
+    .lab-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .lab-card:hover .lab-image-wrapper img {
+      transform: scale(1.1);
+    }
+
+    /* Conteúdo interno do Card */
+    .lab-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      flex: 1;
     }
 
     .lab-tag {
-      display: inline-block;
+      align-self: flex-start;
       font-size: .7rem;
       letter-spacing: .1em;
       text-transform: uppercase;
@@ -362,44 +391,39 @@
       border-radius: 100px;
       font-family: 'Share Tech Mono', monospace;
     }
-    .tag-green  { background: rgba(16,185,129,.15); color: var(--green);  border: 1px solid rgba(16,185,129,.3); }
-    .tag-cyan   { background: rgba(56,189,248,.12); color: var(--cyan);   border: 1px solid rgba(56,189,248,.25); }
-    .tag-royal  { background: rgba(37,99,235,.15);  color: #93c5fd;        border: 1px solid rgba(37,99,235,.3); }
+    .tag-green   { background: rgba(16,185,129,.15); color: var(--green);  border: 1px solid rgba(16,185,129,.3); }
+    .tag-cyan    { background: rgba(56,189,248,.12); color: var(--cyan);   border: 1px solid rgba(56,189,248,.25); }
+    .tag-royal   { background: rgba(37,99,235,.15);  color: #93c5fd;        border: 1px solid rgba(37,99,235,.3); }
 
-    .lab-title { font-size: 1rem; font-weight: 700; color: #fff; }
+    .lab-title { font-size: 1.1rem; font-weight: 700; color: #fff; }
     .lab-desc  { font-size: .85rem; color: var(--muted); line-height: 1.6; flex: 1; }
 
-    .lab-actions { display: flex; gap: .7rem; flex-wrap: wrap; }
+    .lab-actions { margin-top: 0.5rem; }
 
     .btn-lab {
       display: inline-flex;
       align-items: center;
-      gap: .4rem;
-      font-size: .8rem;
-      font-weight: 600;
-      padding: .5rem 1rem;
-      border-radius: 6px;
+      gap: .5rem;
+      font-size: .85rem;
+      font-weight: 700;
+      padding: .65rem 1.2rem;
+      border-radius: 8px;
       text-decoration: none;
       transition: .25s;
       letter-spacing: .03em;
     }
     .btn-lab-demo {
-      background: rgba(37,99,235,.2);
+      background: rgba(37,99,235,.15);
       color: var(--cyan);
       border: 1px solid rgba(37,99,235,.4);
+      width: 100%;
+      justify-content: center;
     }
     .btn-lab-demo:hover {
-      background: rgba(37,99,235,.4);
-      box-shadow: 0 0 14px rgba(56,189,248,.25);
-    }
-    .btn-lab-github {
-      background: rgba(255,255,255,.05);
-      color: var(--muted);
-      border: 1px solid rgba(255,255,255,.1);
-    }
-    .btn-lab-github:hover {
-      background: rgba(255,255,255,.1);
-      color: var(--text);
+      background: var(--royal);
+      color: #fff;
+      border-color: var(--royal);
+      box-shadow: 0 0 16px rgba(37,99,235,.5);
     }
 
     /* ── WHY CORTEX ───────────────────────────────────────────────────── */
@@ -604,221 +628,6 @@
     }
     #scrollTop.show { opacity: 1; pointer-events: all; }
     #scrollTop:hover { box-shadow: 0 0 28px rgba(37,99,235,.7); }
-
-/* ==========================================================================
-   🎨 ESTILIZAÇÃO PREMIUM COMPLETA: NICHOS, SUB-NICHOS E GRID DE VÍDEO (CORRIGIDO)
-   ========================================================================== */
-
-    /* ── CONTAINER DOS NICHOS PRINCIPAIS (NÍVEL 1) ───────────────────────── */
-    .nicho-tabs {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      overflow-x: auto;
-      white-space: nowrap;
-      padding: .5rem 1rem 1rem;
-      justify-content: flex-start; /* Permite scroll fluído no mobile */
-    }
-
-    /* Centraliza os botões em telas desktop grandes */
-    @media (min-width: 1200px) {
-      .nicho-tabs {
-        justify-content: center;
-        overflow-x: visible;
-        white-space: normal;
-        flex-wrap: wrap;
-      }
-    }
-
-    /* Barra de rolagem discreta e cibernética para smartphones */
-    .nicho-tabs::-webkit-scrollbar {
-      height: 4px;
-    }
-    .nicho-tabs::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .nicho-tabs::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 10px;
-    }
-
-    /* 💠 BOTÕES PRINCIPAIS (NICHOS) - DESIGN PREMIUM INTEGRADO AO TEMA ESCURO */
-    .nicho-tabs .tab-btn {
-      background: var(--card-bg);
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: .75rem 1.4rem;
-      border-radius: 10px;
-      cursor: pointer;
-      font-family: 'Exo 2', sans-serif;
-      font-weight: 700;
-      font-size: .95rem;
-      letter-spacing: .03em;
-      display: inline-flex;
-      align-items: center;
-      gap: .6rem;
-      transition: all .25s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Efeito Hover nos Nichos Principais */
-    .nicho-tabs .tab-btn:hover {
-      border-color: rgba(56, 189, 248, 0.4);
-      background: rgba(37, 99, 235, 0.1);
-      transform: translateY(-2px);
-      color: var(--cyan);
-    }
-
-    /* Estado Ativo dos Nichos (Destaque Futurista com Brilho Neon) */
-    .nicho-tabs .tab-btn.active {
-      background: var(--royal);
-      color: #fff;
-      border-color: var(--cyan);
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(37, 99, 235, 0.5), 0 0 8px rgba(56, 189, 248, 0.3);
-    }
-
-    /* ── CONTAINER DOS SUB-NICHOS (NÍVEL 2) ────────────────────────────── */
-    .subnicho-wrapper {
-      margin: -.5rem auto 2.5rem;
-      display: flex;
-      justify-content: center;
-      padding: 0 5%;
-    }
-
-    .subnicho-group {
-      display: none; /* Oculta todas as linhas secundárias por padrão */
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    /* Ativa a linha do subnicho dinamicamente pelo JavaScript */
-    .subnicho-group.active {
-      display: flex;
-      animation: fadeIn .3s ease both;
-    }
-
-    /* BOTÕES SECUNDÁRIOS (SUB-NICHOS) - ESTILO DISCRETO COM BORDA TRACEJADA */
-    .subtab-btn {
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--muted);
-      border: 1px dashed var(--border);
-      padding: .5rem 1.1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-family: 'Exo 2', sans-serif;
-      font-weight: 500;
-      font-size: .82rem;
-      transition: all .2s ease;
-    }
-
-    .subtab-btn:hover, .subtab-btn.active {
-      background: rgba(56, 189, 248, 0.12);
-      color: var(--cyan);
-      border-color: var(--cyan);
-      text-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
-    }
-
-    /* ── EXIBIÇÃO DO CARD DE CONTEÚDO (GRID DE DUAS COLUNAS) ─────────────── */
-    .nicho-content {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 2.5rem;
-      position: relative;
-      overflow: hidden;
-      margin-top: 1rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-
-    /* Ocultação absoluta para evitar listas infinitas vazadas na página */
-    .nicho-content .nicho-panel {
-      display: none !important;
-    }
-
-    /* CORREÇÃO CRÍTICA DO LAYOUT: Aplica o Grid diretamente no painel ativo 
-      para garantir o vídeo na esquerda e o texto na direita perfeitamente alinhados */
-    .nicho-content .nicho-panel.active {
-      display: grid !important;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 3rem;
-      align-items: center;
-      animation: fadeIn .4s ease both;
-    }
-
-    /* Permite que os filhos do grid (.video-placeholder e .propaganda-text) 
-      se acomodem corretamente nas colunas do elemento pai */
-    .propaganda-grid {
-      display: contents; 
-    }
-
-    /* CAIXA DO PLAYER DE VÍDEO DEMONSTRATIVO */
-    .video-placeholder {
-      background: #090f1d;
-      border: 1px dashed var(--cyan);
-      border-radius: 10px;
-      height: 280px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      color: var(--muted);
-      padding: 1.5rem;
-      text-align: center;
-      width: 100%;
-    }
-
-    .play-icon {
-      font-size: 2.5rem;
-      color: var(--cyan);
-      text-shadow: 0 0 12px rgba(56,189,248,.6);
-      cursor: pointer;
-      transition: transform .2s;
-    }
-
-    .video-placeholder:hover .play-icon {
-      transform: scale(1.1);
-    }
-
-    /* TEXTOS INTERNOS DO PAINEL */
-    .propaganda-text h3 {
-      font-size: 1.6rem;
-      color: #fff;
-      margin: 1rem 0;
-      line-height: 1.3;
-    }
-
-    .propaganda-text p {
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 2rem;
-      font-size: .95rem;
-    }
-
-    .propaganda-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    /* ANIMAÇÃO DE FLUIDEZ */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: none; }
-    }
-
-    /* ── RESPONSIVIDADE COMPLETA PARA SMARTPHONES E TABLETS ──────────────── */
-    @media (max-width: 900px) {
-      .nicho-content .nicho-panel.active {
-        grid-template-columns: 1fr !important; 
-        gap: 2rem;
-      }
-      .nicho-content {
-        padding: 1.5rem;
-      }
-    }
   </style>
 </head>
 <body>
@@ -945,360 +754,209 @@
 
 <section id="lab">
   <div class="section-header reveal">
-    <div class="section-label"></div>
-    <h2 class="section-title">Lista de <span>Sistemas</span></h2>
-    <p class="section-sub">Veja na prática como a Cortex Digital elimina o seu trabalho operacional e devolve sua liberdade de tempo.</p>
+    <div class="section-label">// 02 - Portfólio Ativo</div>
+    <h2 class="section-title">Módulos de <span>Automação Comercial</span></h2>
+    <p class="section-sub">Soluções integradas ao WhatsApp Business. Escolha seu segmento para ver o funcionamento e simular a ferramenta.</p>
   </div>
 
-  <!-- NÍVEL 1: NICHOS PRINCIPAIS (SCROLL HORIZONTAL AUTOMÁTICO EM CELULARES CASO NÃO COUBER) -->
-  <div class="nicho-tabs reveal" style="overflow-x: auto; white-space: nowrap; padding-bottom: 5px;">
-    <button class="tab-btn active" data-nicho="alimentacao" onclick="switchNicho('alimentacao')">🍔 Alimentação</button>
-    <button class="tab-btn" data-nicho="automoveis" onclick="switchNicho('automoveis')">🚗 Automóveis</button>
-    <button class="tab-btn" data-nicho="construcao" onclick="switchNicho('construcao')">🏗️ Construção Civil</button>
-    <button class="tab-btn" data-nicho="educacao" onclick="switchNicho('educacao')">📚 Educação</button>
-    <button class="tab-btn" data-nicho="escritorios" onclick="switchNicho('escritorios')">🏢 Escritórios</button>
-    <button class="tab-btn" data-nicho="pet" onclick="switchNicho('pet')">🐾 Mercado Pet</button>
-    <button class="tab-btn" data-nicho="saude" onclick="switchNicho('saude')">🏥 Saúde</button>
-    <button class="tab-btn" data-nicho="beleza" onclick="switchNicho('beleza')">💅 Beleza</button>
-    <button class="tab-btn" data-nicho="eventos" onclick="switchNicho('eventos')">🎉 Eventos</button>
-  </div>
+  <div class="lab-grid">
 
-  <!-- NÍVEL 2: SUB-NICHOS DINÂMICOS -->
-  <div class="subnicho-wrapper reveal">
-    <!-- Alimentação -->
-    <div id="sub-alimentacao" class="subnicho-group active">
-      <button class="subtab-btn active" onclick="switchSubnicho('ali-saas')">SaaS Integrado</button>
-      <button class="subtab-btn" onclick="switchSubnicho('ali-landing')">Landing Page de Vendas</button>
-    </div>
-
-    <!-- Automóveis -->
-    <div id="sub-automoveis" class="subnicho-group">
-      <button class="subtab-btn active" onclick="switchSubnicho('auto-oficinas')">Oficinas</button>
-      <button class="subtab-btn" onclick="switchSubnicho('auto-pecas')">Auto Peças</button>
-      <button class="subtab-btn" onclick="switchSubnicho('auto-lavarapido')">Lava Rápido</button>
-    </div>
-
-    <!-- Construção Civil -->
-    <div id="sub-construcao" class="subnicho-group">
-      <button class="subtab-btn active" onclick="switchSubnicho('const-engenharia')">Engenharia</button>
-      <button class="subtab-btn" onclick="switchSubnicho('const-autonomos')">Profissionais Autônomos</button>
-    </div>
-
-    <!-- Educação -->
-    <div id="sub-educacao" class="subnicho-group">
-      <button class="subtab-btn active" onclick="switchSubnicho('edu-escolas')">Escolas</button>
-      <button class="subtab-btn" onclick="switchSubnicho('edu-cursos')">Cursos</button>
-      <button class="subtab-btn" onclick="switchSubnicho('edu-professores')">Professores / Mentores</button>
-    </div>
-
-    <!-- Escritórios -->
-    <div id="sub-escritorios" class="subnicho-group">
-      <button class="subtab-btn active" onclick="switchSubnicho('esc-advocacia')">Advocacia</button>
-      <button class="subtab-btn" onclick="switchSubnicho('esc-contabilidade')">Contabilidade</button>
-      <button class="subtab-btn" onclick="switchSubnicho('esc-outros')">Outros Segmentos</button>
-    </div>
-
-    <!-- Mercado Pet -->
-    <div id="sub-pet" class="subnicho-group">
-      <button class="subtab-btn active" onclick="switchSubnicho('pet-banhotosa')">Banho e Tosa</button>
-      <button class="subtab-btn" onclick="switchSubnicho('pet-lojas')">Lojas Para Pets</button>
-    </div>
-
-    <!-- Saúde -->
-    <div id="sub-saude" class="subnicho-group">
-      <button class="subtab-btn active" onclick="switchSubnicho('saude-clinicas')">Clínicas e Consultórios</button>
-    </div>
-
-    <!-- Beleza -->
-    <div id="sub-beleza" class="subnicho-group">
-      <button class="subtab-btn active" onclick="switchSubnicho('bel-salao')">Salão de Beleza</button>
-      <button class="subtab-btn" onclick="switchSubnicho('bel-barbearia')">Barbearia</button>
-      <button class="subtab-btn" onclick="switchSubnicho('bel-nail')">Nail Designer</button>
-    </div>
-
-    <!-- Eventos -->
-    <div id="sub-eventos" class="subnicho-group">
-      <button class="subtab-btn active" onclick="switchSubnicho('eve-casasfestas')">Casas de Festas</button>
-      <button class="subtab-btn" onclick="switchSubnicho('eve-buffets')">Buffets</button>
-      <button class="subtab-btn" onclick="switchSubnicho('eve-bolos')">Confeitaria e Bolos</button>
-      <button class="subtab-btn" onclick="switchSubnicho('eve-decoracoes')">Decorações</button>
-    </div>
-  </div>
-
-  <!-- ÁREA DE CONTEÚDO DA PROPAGANDA (PAINÉIS DE CADA SUBNICHO) -->
-  <div class="nicho-content reveal">
-    
-    <!-- PANELS: ALIMENTAÇÃO -->
-    <div id="panel-ali-saas" class="nicho-panel active">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: SaaS para Alimentação</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-green">● Sistema Ativo</span>
-          <h3>Automatize pedidos e mesas. A tecnologia cuida do operacional.</h3>
-          <p>Gerencie pedidos, fluxos de entrega e reservas sem atritos. Atendimento rápido e inteligente integrado para otimizar sua cozinha e faturamento.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Alimenta%C3%A7%C3%A3o%20SaaS" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
-        </div>
+    <div class="lab-card reveal">
+      <div class="lab-image-wrapper">
+        <img src="delivery.png" alt="Delivery de Alimentos">
       </div>
-    </div>
-    <div id="panel-ali-landing" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Landing Page Alimentação</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-green">● Sistema Ativo</span>
-          <h3>Destaque seu cardápio. A tecnologia converte cliques em clientes.</h3>
-          <p>Uma página exclusiva, rápida e otimizada para apresentar sua marca de alimentação e direcionar pedidos instantaneamente para seu WhatsApp.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Landing%20Page%20para%20Alimenta%C3%A7%C3%A3o" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
+      <div class="lab-content">
+        <span class="lab-tag tag-green">● Alimentos</span>
+        <div class="lab-title">Delivery de Alimentos</div>
+        <div class="lab-desc">Cardápio Digital Inteligente 24/7</div>
+        <div class="lab-actions">
+          <a href="delivery.html" class="btn-lab btn-lab-demo">▶ Testar Automação</a>
         </div>
       </div>
     </div>
 
-    <!-- PANELS: AUTOMÓVEIS -->
-    <div id="panel-auto-oficinas" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Automação para Oficinas</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-cyan">● Em Demo</span>
-          <h3>Cuide dos motores. A tecnologia cuida dos agendamentos de revisão.</h3>
-          <p>Elimine gargalos na oficina. Deixe que o cliente agende a manutenção ou troca de óleo diretamente pelo bot sem parar o trabalho dos seus mecânicos.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Oficinas" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
-        </div>
+    <div class="lab-card reveal">
+      <div class="lab-image-wrapper">
+        <img src="advocacia.png" alt="Escritórios de Advocacia">
       </div>
-    </div>
-    <div id="panel-auto-pecas" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Gestão de Auto Peças</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-cyan">● Em Demo</span>
-          <h3>Estoque inteligente. Consulta rápida de componentes.</h3>
-          <p>Sistemas integrados para localização e triagem de autopeças acelerando o balcão de vendas e otimizando o fluxo de orçamentos.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Auto%20Pe%C3%A7as" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
-        </div>
-      </div>
-    </div>
-    <div id="panel-auto-lavarapido" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Estética Automotiva / Lava Rápido</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-cyan">● Em Demo</span>
-          <h3>Foque no brilho e detalhamento. Nossa automação gerencia as vagas.</h3>
-          <p>Controle de filas e agendamento de lavagens e polimentos automatizado, garantindo pátio organizado e faturamento constante.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Lava%20R%C3%A1pido" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
+      <div class="lab-content">
+        <span class="lab-tag tag-green">● Jurídico</span>
+        <div class="lab-title">Escritórios de Advocacia</div>
+        <div class="lab-desc">Triagem inicial ética por área do direito, blindagem de tempo técnico e agendamento automático de consultas integrados ao WhatsApp.</div>
+        <div class="lab-actions">
+          <a href="advocacia.html" class="btn-lab btn-lab-demo">▶ Testar Automação</a>
         </div>
       </div>
     </div>
 
-    <!-- PANELS: CONSTRUÇÃO CIVIL -->
-    <div id="panel-const-engenharia" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Escritórios de Engenharia</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-royal">● Preview</span>
-          <h3>Gerenciamento de escopo e projetos. A tecnologia cuida dos prazos.</h3>
-          <p>Sistemas para acompanhamento de cronogramas de obras, emissão de relatórios técnicos e agendamento com investidores ou equipes.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Engenharia" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
-        </div>
+    <div class="lab-card reveal">
+      <div class="lab-image-wrapper">
+        <img src="auto_pecas.png" alt="Lojas de Autopeças">
       </div>
-    </div>
-    <div id="panel-const-autonomos" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Autônomos da Construção</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-royal">● Preview</span>
-          <h3>Valorize sua mão de obra. Orçamentos e visitas automatizadas.</h3>
-          <p>Para eletricistas, encanadores e pintores. Deixe o sistema agendar vistorias técnicas e responder clientes enquanto você está em campo executando.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Aut%C3%B4nomos" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
+      <div class="lab-content">
+        <span class="lab-tag tag-green">● Automotivo</span>
+        <div class="lab-title">Lojas de Autopeças</div>
+        <div class="lab-desc">Consulta inteligente de peças por ano/modelo, respostas de orçamentos 24/7 e cálculo automatizado de fretes e entregas.</div>
+        <div class="lab-actions">
+          <a href="auto_pecas.html" class="btn-lab btn-lab-demo">▶ Testar Automação</a>
         </div>
       </div>
     </div>
 
-    <!-- PANELS: EDUCAÇÃO -->
-    <div id="panel-edu-escolas" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Gestão para Escolas</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-green">● Ativo</span>
-          <h3>Secretaria digital ativa. A tecnologia organiza a secretaria.</h3>
-          <p>Centralize matrículas, atendimento a responsáveis e agendamentos de reuniões pedagógicas em uma única plataforma automatizada.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Escolas" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
-        </div>
+    <div class="lab-card reveal">
+      <div class="lab-image-wrapper">
+        <img src="barbearia.png" alt="Barbearias e Barbearistas">
       </div>
-    </div>
-    <div id="panel-edu-cursos" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Centros de Cursos</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-green">● Ativo</span>
-          <h3>Matrículas abertas 24h. O bot faz o fechamento das turmas.</h3>
-          <p>Triagem inteligente de alunos interessados e agendamento de aulas experimentais de idiomas, música ou informática automaticamente.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Cursos" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
-        </div>
-      </div>
-    </div>
-    <div id="panel-edu-professores" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Professores Particulares / Mentores</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-green">● Ativo</span>
-          <h3>Foque em ensinar. Nosso software gerencia sua grade de horários.</h3>
-          <p>Seus alunos particulares ou mentorados escolhem, agendam e cancelam aulas de forma autônoma de acordo com sua disponibilidade real.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Professores" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
+      <div class="lab-content">
+        <span class="lab-tag tag-cyan">● Beleza</span>
+        <div class="lab-title">Barbearias e Barbearistas</div>
+        <div class="lab-desc">Fluxo completo de agendamento por profissional, validação de horários livres e alertas automáticos de confirmação anti-faltas.</div>
+        <div class="lab-actions">
+          <a href="barbearia.html" class="btn-lab btn-lab-demo">▶ Testar Automação</a>
         </div>
       </div>
     </div>
 
-    <!-- PANELS: ESCRITÓRIOS -->
-    <div id="panel-esc-advocacia" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Escritórios de Advocacia</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-cyan">● Em Demo</span>
-          <h3>Foco nas teses e prazos judiciais. Agenda de consultas blindada.</h3>
-          <p>Evite interrupções desnecessárias. Agendamento automatizado de consultas e triagem prévia do caso jurídico direto pelo sistema.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Advocacia" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
-        </div>
+    <div class="lab-card reveal">
+      <div class="lab-image-wrapper">
+        <img src="casas_de_festa.png" alt="Casas de Festas e Eventos">
       </div>
-    </div>
-    <div id="panel-esc-contabilidade" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Escritórios de Contabilidade</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-cyan">● Em Demo</span>
-          <h3>Fechamento fiscal sem interrupções. Recepção e triagem digital.</h3>
-          <p>Organize o atendimento para abertura de empresas, consultorias contábeis e coletas de documentos de forma automatizada e segura.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Contabilidade" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
-        </div>
-      </div>
-    </div>
-    <div id="panel-esc-outros" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Escritórios e Consultorias</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-cyan">● Em Demo</span>
-          <h3>Otimização de processos corporativos. Produtividade blindada.</h3>
-          <p>Soluções em dashboards de desempenho, fluxos automáticos e integrações personalizadas para agências e corporações de serviços.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Escritorios" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
+      <div class="lab-content">
+        <span class="lab-tag tag-royal">● Festas</span>
+        <div class="lab-title">Casas de Festas e Eventos</div>
+        <div class="lab-desc">Filtro automático de disponibilidade de datas, calculadora de orçamentos por convidados e disparo ágil de catálogos e cardápios.</div>
+        <div class="lab-actions">
+          <a href="casas_de_festa.html" class="btn-lab btn-lab-demo">▶ Testar Automação</a>
         </div>
       </div>
     </div>
 
-    <!-- PANELS: MERCADO PET -->
-    <div id="panel-pet-banhotosa" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Petshop / Banho e Tosa</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-royal">● Preview</span>
-          <h3>Cuide do bem-estar dos pets. A tecnologia cuida da fila de espera.</h3>
-          <p>Agendamentos de banho, tosa e tratamentos estéticos animais de forma fluida. O sistema exibe os horários por profissional ou tipo de porte do cão.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Banho%20e%20Tosa" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
-        </div>
+    <div class="lab-card reveal">
+      <div class="lab-image-wrapper">
+        <img src="consultorio.png" alt="Consultórios e Clínicas Médicas">
       </div>
-    </div>
-    <div id="panel-pet-lojas" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Sistemas para Petshops</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-royal">● Preview</span>
-          <h3>Ponto de venda e controle de produtos pet. Fluxo automatizado.</h3>
-          <p>Gestão integrada de rações, acessórios e medicamentos, mantendo o controle financeiro unificado ao agendamento de serviços.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Lojas%20Pet" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
+      <div class="lab-content">
+        <span class="lab-tag tag-royal">● Clínicas</span>
+        <div class="lab-title">Consultórios e Clínicas Médicas</div>
+        <div class="lab-desc">Secretaria digital focada em redução drástica de faltas, lembretes de consultas e algoritmo ágil de lista de espera para encaixes.</div>
+        <div class="lab-actions">
+          <a href="consultorio.html" class="btn-lab btn-lab-demo">▶ Testar Automação</a>
         </div>
       </div>
     </div>
 
-    <!-- PANELS: SAÚDE -->
-    <div id="panel-saude-clinicas" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Clínicas e Consultórios Médicos</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-green">● Ativo</span>
-          <h3>Foco absoluto no paciente. Recepção e agendamento inteligente.</h3>
-          <p>Sistemas integrados de marcação de consultas, triagem em conformidade de privacidade e disparo automatizado de lembretes anti-faltas na véspera.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Cl%C3%ADnicas" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
+    <div class="lab-card reveal">
+      <div class="lab-image-wrapper">
+        <img src="contabil.png" alt="Contabilidade e Finanças">
+      </div>
+      <div class="lab-content">
+        <span class="lab-tag tag-green">● Escritórios</span>
+        <div class="lab-title">Contabilidade e Finanças</div>
+        <div class="lab-desc">Central de atendimento para envio de guias fiscais, folhas de pagamento, DAS e triagem automática de documentos de DP.</div>
+        <div class="lab-actions">
+          <a href="contabil.html" class="btn-lab btn-lab-demo">▶ Testar Automação</a>
         </div>
       </div>
     </div>
 
-    <!-- PANELS: BELEZA -->
-    <div id="panel-bel-salao" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Salão de Beleza</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-green">● Ativo</span>
-          <h3>Mãos focadas no cabelo. Nosso assistente virtual fecha a agenda.</h3>
-          <p>Elimine o tempo perdido respondendo preço e horários. Deixe as clientes simularem e reservarem de forma independente 24h por dia.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Sal%C3%A3o%20de%20Beleza" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
-        </div>
+    <div class="lab-card reveal">
+      <div class="lab-image-wrapper">
+        <img src="educacao.png" alt="Educação, Cursos e Escolas">
       </div>
-    </div>
-    <div id="panel-bel-barbearia" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Barbearias</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-cyan">● Em Demo</span>
-          <h3>Foque na navalha e tesoura. Cortex gerencia suas cadeiras.</h3>
-          <p>Agendamento rápido via link no WhatsApp. Organização de horários por barbeiro e controle de faturamento em tempo real para seu negócio.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Barbearias" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
-        </div>
-      </div>
-    </div>
-    <div id="panel-bel-nail" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Estúdios de Nail Design</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-royal">● Preview</span>
-          <h3>Alongamentos e manutenções organizadas sem planilhas.</h3>
-          <p>Lembretes automáticos para retornos de manutenção entre 15 e 21 dias enviado diretamente para o WhatsApp das suas clientes fiéis.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Nail%20Design" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
+      <div class="lab-content">
+        <span class="lab-tag tag-royal">● Ensino</span>
+        <div class="lab-title">Educação, Cursos e Escolas</div>
+        <div class="lab-desc">Secretaria escolar inteligente com envio automático de grades curriculares, valores e agendamento de aulas experimentais.</div>
+        <div class="lab-actions">
+          <a href="educacao.html" class="btn-lab btn-lab-demo">▶ Testar Automação</a>
         </div>
       </div>
     </div>
 
-    <!-- PANELS: EVENTOS -->
-    <div id="panel-eve-casasfestas" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Casas de Festas / Espaços</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-royal">● Preview</span>
-          <h3>Bloqueio de datas inteligente. Zero risco de overbooking.</h3>
-          <p>Controle preciso de locações e datas festivas. Deixe o prospect simular o dia livre e solicitar orçamento técnico integrado de forma clara.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Casas%20de%20Festas" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
-        </div>
+    <div class="lab-card reveal">
+      <div class="lab-image-wrapper">
+        <img src="lava_rapido.png" alt="Lava Rápido e Higienização">
       </div>
-    </div>
-    <div id="panel-eve-buffets" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Serviços de Buffet</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-royal">● Preview</span>
-          <h3>Cardápios e orçamentos estruturados. Atendimento sem pausas.</h3>
-          <p>Triagem inteligente do tamanho do evento (número de convidados e tipo de menu) gerando propostas prévias automaticamente no CRM.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Buffets" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
-        </div>
-      </div>
-    </div>
-    <div id="panel-eve-bolos" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Atelier de Doces e Bolos</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-royal">● Preview</span>
-          <h3>Foque na produção dos doces. A Cortex gerencia os agendamentos.</h3>
-          <p>Controle prazos de encomendas de bolos artesanais e doces finos sem perder dados em blocos de notas ou chats lotados.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Confeitaria" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
-        </div>
-      </div>
-    </div>
-    <div id="panel-eve-decoracoes" class="nicho-panel">
-      <div class="propaganda-grid">
-        <div class="propaganda-media"><div class="video-placeholder"><span class="play-icon">▶</span><p>Demonstração: Decorações de Festas</p></div></div>
-        <div class="propaganda-text">
-          <span class="lab-tag tag-royal">● Preview</span>
-          <h3>Inventário de peças e datas integrado à agenda de montagem.</h3>
-          <p>Evite alugar o mesmo kit de móveis ou painel de balões para dois eventos no mesmo final de semana através da conferência da inteligência Cortex.</p>
-          <div class="propaganda-actions"><a href="https://wa.me/5521997879201?text=Quero%20Automa%C3%A7%C3%A3o%20para%20Decora%C3%A7%C3%B5es" target="_blank" class="btn-primary">💬 Saiba Mais no WhatsApp</a></div>
+      <div class="lab-content">
+        <span class="lab-tag tag-green">● Estética</span>
+        <div class="lab-title">Lava Rápido e Higienização</div>
+        <div class="lab-desc">Gerenciamento de filas de pátio nos finais de semana, escolha automática de combos de limpeza e disparo de avisos de carro pronto.</div>
+        <div class="lab-actions">
+          <a href="lava_rapido.html" class="btn-lab btn-lab-demo">▶ Testar Automação</a>
         </div>
       </div>
     </div>
 
+    <div class="lab-card reveal">
+      <div class="lab-image-wrapper">
+        <img src="manicure.png" alt="Nail Designers e Manicures">
+      </div>
+      <div class="lab-content">
+        <span class="lab-tag tag-cyan">● Unhas</span>
+        <div class="lab-title">Nail Designers e Manicures</div>
+        <div class="lab-desc">Automatização focada em liberação de mãos para o trabalho técnico, envio de tabelas de preços e lembretes de manutenção de gel.</div>
+        <div class="lab-actions">
+          <a href="manicure.html" class="btn-lab btn-lab-demo">▶ Testar Automação</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lab-card reveal">
+      <div class="lab-image-wrapper">
+        <img src="oficina.png" alt="Oficinas Mecânicas">
+      </div>
+      <div class="lab-content">
+        <span class="lab-tag tag-green">● Automotivo</span>
+        <div class="lab-title">Oficinas Mecânicas</div>
+        <div class="lab-desc">Módulo para triagem de pátio digital, coleta autônoma de placas/sintomas e envio automático do status das Ordens de Serviço.</div>
+        <div class="lab-actions">
+          <a href="oficina.html" class="btn-lab btn-lab-demo">▶ Testar Automação</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lab-card reveal">
+      <div class="lab-image-wrapper">
+        <img src="pet_shop.png" alt="Pet Shops e Banho e Tosa">
+      </div>
+      <div class="lab-content">
+        <span class="lab-tag tag-royal">● Pet</span>
+        <div class="lab-title">Pet Shops e Banho e Tosa</div>
+        <div class="lab-desc">Triagem inteligente por porte e pelagem do animal, confirmações de horários e controle logístico para serviço de Táxi Dog.</div>
+        <div class="lab-actions">
+          <a href="pet_shop.html" class="btn-lab btn-lab-demo">▶ Testar Automação</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lab-card reveal">
+      <div class="lab-image-wrapper">
+        <img src="estetica.png" alt="Estética e Cuidados Pessoais">
+      </div>
+      <div class="lab-content">
+        <span class="lab-tag tag-royal">● Estética</span>
+        <div class="lab-title">Estética e Cuidados Pessoais</div>
+        <div class="lab-desc">Gerenciamento de múltiplos serviços integrados, escolha de profissionais favoritas e lista de espera inteligente para encaixes rápidos.
+        </div>
+        <div class="lab-actions">
+          <a href="estetica.html" class="btn-lab btn-lab-demo">▶ Testar Automação</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lab-card reveal">
+      <div class="lab-image-wrapper">
+        <img src="salao_beleza.png" alt="Salões de Beleza e Clínicas">
+      </div>
+      <div class="lab-content">
+        <span class="lab-tag tag-cyan">● Estética</span>
+        <div class="lab-title">Salões de Beleza e Clínicas</div>
+        <div class="lab-desc">Gerenciamento de múltiplos serviços integrados, escolha de profissionais favoritas e lista de espera inteligente para encaixes rápidos.</div>
+        <div class="lab-actions">
+          <a href="salao_beleza.html" class="btn-lab btn-lab-demo">▶ Testar Automação</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1319,7 +977,7 @@
     </div>
     <div class="why-card reveal">
       <div class="why-icon">⚡</div>
-      <div class="why-title">Experiência Técnica Robustecida</div>
+      <div class="why-title">Experiência Técnico Robustecida</div>
       <div class="why-desc">Do reparo de hardware ao desenvolvimento de software - domínio completo da stack tecnológica significa soluções integradas sem pontos cegos.</div>
     </div>
     <div class="why-card reveal">
@@ -1373,7 +1031,7 @@
 
       <div class="qr-block">
           <div class="qr-box">
-              <img src="QR.PNG" alt="QR Code WhatsApp">
+              <img src="qr.png" alt="QR Code WhatsApp">
           </div>
 
           <div class="qr-text">
@@ -1519,175 +1177,6 @@
     if (open) links.style.display = 'none';
   });
 })();
-/* ── Lógica de Abas Dinâmicas por Nicho e Leitura de URL ── */
-window.switchNicho = function(nichoId) {
-  // Desativa todos os botões e painéis
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-  document.querySelectorAll('.nicho-panel').forEach(panel => panel.classList.remove('active'));
-  
-  // Ativa o botão clicado e o painel correspondente
-  const targetPanel = document.getElementById(`nicho-${nichoId}`);
-  if(targetPanel) {
-    targetPanel.classList.add('active');
-    // Acha o botão que possui o atributo onclick correspondente e ativa
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      if(btn.getAttribute('onclick').includes(nichoId)) btn.classList.add('active');
-    });
-  }
-}
-
-/* ── Lógica de Cascata Avançada Multi-Nicho e Leitura de URL ── */
-window.switchNicho = function(nichoId) {
-  // 1. Ativa o Botão do Nicho Principal
-  document.querySelectorAll('.nicho-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
-  const activeMainBtn = document.querySelector(`.nicho-tabs .tab-btn[data-nicho="${nichoId}"]`);
-  if (activeMainBtn) activeMainBtn.classList.add('active');
-
-  // 2. Alterna Grupos de Subnichos correspondentes
-  document.querySelectorAll('.subnicho-group').forEach(group => group.classList.remove('active'));
-  const activeGroup = document.getElementById(`sub-${nichoId}`);
-  if (activeGroup) {
-    activeGroup.classList.add('active');
-    // Ativa automaticamente o primeiro subnicho do grupo selecionado
-    const firstSubBtn = activeGroup.querySelector('.subtab-btn');
-    if (firstSubBtn) firstSubBtn.click();
-  }
-}
-
-window.switchSubnicho = function(subnichoId) {
-  // 1. Gerencia estado ativo dos sub-botões no painel aberto
-  const activeGroup = document.querySelector('.subnicho-group.active');
-  if (activeGroup) {
-    activeGroup.querySelectorAll('.subtab-btn').forEach(btn => btn.classList.remove('active'));
-  }
-  
-  document.querySelectorAll('.subtab-btn').forEach(btn => {
-    if(btn.getAttribute('onclick').includes(`'${subnichoId}'`)) btn.classList.add('active');
-  });
-
-  // 2. Apresenta o painel da propaganda filtrada
-  document.querySelectorAll('.nicho-content .nicho-panel').forEach(panel => panel.classList.remove('active'));
-  const targetPanel = document.getElementById(`panel-${subnichoId}`);
-  if (targetPanel) targetPanel.classList.add('active');
-}
-
-/* ── Lógica Corrigida de Abas e Sub-nichos ── */
-window.switchNicho = function(nichoId) {
-  // 1. Altera o estado visual dos botões principais (Nível 1)
-  document.querySelectorAll('.nicho-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
-  const activeMainBtn = document.querySelector(`.nicho-tabs .tab-btn[data-nicho="${nichoId}"]`);
-  if (activeMainBtn) activeMainBtn.classList.add('active');
-
-  // 2. Oculta todos os grupos de subnichos e mostra apenas o correto (Nível 2)
-  document.querySelectorAll('.subnicho-group').forEach(group => group.classList.remove('active'));
-  const activeGroup = document.getElementById(`sub-${nichoId}`);
-  if (activeGroup) {
-    activeGroup.classList.add('active');
-    
-    // Força o clique no primeiro subnicho desse novo grupo para atualizar a tela
-    const firstSubBtn = activeGroup.querySelector('.subtab-btn');
-    if (firstSubBtn) firstSubBtn.click();
-  }
-}
-
-window.switchSubnicho = function(subnichoId) {
-  // 1. Remove o estado ativo de todos os botões de subnicho da tela
-  document.querySelectorAll('.subtab-btn').forEach(btn => btn.classList.remove('active'));
-  
-  // 2. Adiciona a classe active no botão que foi clicado
-  document.querySelectorAll('.subtab-btn').forEach(btn => {
-    if(btn.getAttribute('onclick').includes(`'${subnichoId}'`)) btn.classList.add('active');
-  });
-
-  // 3. Oculta ABSOLUTAMENTE todos os painéis de texto
-  document.querySelectorAll('.nicho-content .nicho-panel').forEach(panel => {
-    panel.classList.remove('active');
-  });
-
-  // 4. Exibe única e exclusivamente o painel correspondente ao subnicho ativo
-  const targetPanel = document.getElementById(`panel-${subnichoId}`);
-  if (targetPanel) {
-    targetPanel.classList.add('active');
-  }
-}
-
-/* ── Lógica Corrigida de Abas e Sub-nichos ── */
-window.switchNicho = function(nichoId) {
-  // 1. Altera o estado visual dos botões principais (Nível 1)
-  document.querySelectorAll('.nicho-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
-  const activeMainBtn = document.querySelector(`.nicho-tabs .tab-btn[data-nicho="${nichoId}"]`);
-  if (activeMainBtn) activeMainBtn.classList.add('active');
-
-  // 2. Oculta todos os grupos de subnichos e mostra apenas o correto (Nível 2)
-  document.querySelectorAll('.subnicho-group').forEach(group => group.classList.remove('active'));
-  const activeGroup = document.getElementById(`sub-${nichoId}`);
-  if (activeGroup) {
-    activeGroup.classList.add('active');
-    
-    // Força o clique no primeiro subnicho desse novo grupo para atualizar a tela
-    const firstSubBtn = activeGroup.querySelector('.subtab-btn');
-    if (firstSubBtn) firstSubBtn.click();
-  }
-}
-
-window.switchSubnicho = function(subnichoId) {
-  // 1. Remove o estado ativo de todos os botões de subnicho da tela
-  document.querySelectorAll('.subtab-btn').forEach(btn => btn.classList.remove('active'));
-  
-  // 2. Adiciona a classe active no botão que foi clicado
-  document.querySelectorAll('.subtab-btn').forEach(btn => {
-    if(btn.getAttribute('onclick').includes(`'${subnichoId}'`)) btn.classList.add('active');
-  });
-
-  // 3. Oculta ABSOLUTAMENTE todos os painéis de texto
-  document.querySelectorAll('.nicho-content .nicho-panel').forEach(panel => {
-    panel.classList.remove('active');
-  });
-
-  // 4. Exibe única e exclusivamente o painel correspondente ao subnicho ativo
-  const targetPanel = document.getElementById(`panel-${subnichoId}`);
-  if (targetPanel) {
-    targetPanel.classList.add('active');
-  }
-}
-
-// Monitor de links externos para direcionamento por grupos (?sub=nome-do-subnicho)
-window.addEventListener('DOMContentLoaded', () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const subParam = urlParams.get('sub');
-  
-  if (subParam) {
-    const targetPanel = document.getElementById(`panel-${subParam}`);
-    if (targetPanel) {
-      let parentNicho = 'alimentacao';
-      
-      if(['auto-oficinas', 'auto-pecas', 'auto-lavarapido'].includes(subParam)) parentNicho = 'automoveis';
-      if(['const-engenharia', 'const-autonomos'].includes(subParam)) parentNicho = 'construcao';
-      if(['edu-escolas', 'edu-cursos', 'edu-professores'].includes(subParam)) parentNicho = 'educacao';
-      if(['esc-advocacia', 'esc-contabilidade', 'esc-outros'].includes(subParam)) parentNicho = 'escritorios';
-      if(['pet-banhotosa', 'pet-lojas'].includes(subParam)) parentNicho = 'pet';
-      if(['saude-clinicas'].includes(subParam)) parentNicho = 'saude';
-      if(['bel-salao', 'bel-barbearia', 'bel-nail'].includes(subParam)) parentNicho = 'beleza';
-      if(['eve-casasfestas', 'eve-buffets', 'eve-bolos', 'eve-decoracoes'].includes(subParam)) parentNicho = 'eventos';
-      
-      // Executa o chaveamento correto de árvore
-      document.querySelectorAll('.nicho-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
-      const mainBtn = document.querySelector(`.nicho-tabs .tab-btn[data-nicho="${parentNicho}"]`);
-      if (mainBtn) mainBtn.classList.add('active');
-      
-      document.querySelectorAll('.subnicho-group').forEach(group => group.classList.remove('active'));
-      const groupEl = document.getElementById(`sub-${parentNicho}`);
-      if (groupEl) groupEl.classList.add('active');
-      
-      switchSubnicho(subParam);
-
-      setTimeout(() => {
-        const labSection = document.getElementById('lab');
-        if(labSection) labSection.scrollIntoView({ behavior: 'smooth' });
-      }, 400);
-    }
-  }
-});
 </script>
 </body>
 </html>
